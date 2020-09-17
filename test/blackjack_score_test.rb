@@ -27,7 +27,7 @@ describe 'Blackjack Score' do
     # Act
     score = blackjack_score(hand)
 
-    # Assert <-  You do this part!
+    # Assert
     expect(score).must_equal 20
   end
 
@@ -38,7 +38,7 @@ describe 'Blackjack Score' do
     # Act
     score = blackjack_score(hand)
 
-    # Assert <-  You do this part!
+    # Assert
     expect(score).must_equal 19
   end
 
@@ -49,35 +49,57 @@ describe 'Blackjack Score' do
     # Act
     score = blackjack_score(hand)
 
-    # Assert <-  You do this part!
+    # Assert
     expect(score).must_equal 12
   end
 
   it 'raises an ArgumentError for invalid cards' do
     expect {
-      blackjack_score(1, 'Jack', 8)
+      blackjack_score([1, 'Jack', 8])
     }.must_raise ArgumentError
 
     expect {
-      blackjack_score('fish', 6, 8)
+      blackjack_score(['fish', 6, 8])
     }.must_raise ArgumentError
 
     expect {
-      blackjack_score(6, 3, '')
+      blackjack_score([6, 3, ''])
     }.must_raise ArgumentError
   end
 
   it 'raises an ArgumentError for scores over 21' do
     expect {
-      blackjack_score('Queen', 'Jack', 'King')
+      blackjack_score(['Queen', 'Jack', 'King'])
     }.must_raise ArgumentError
 
     expect {
-      blackjack_score(8, 6, 9)
+      blackjack_score([8, 6, 9])
     }.must_raise ArgumentError
 
     expect {
-      blackjack_score('King', 3, 'Jack')
+      blackjack_score(['King', 3, 'Jack'])
+    }.must_raise ArgumentError
+  end
+
+  it 'raises an ArgumentError for hands with incorrect number of cards' do
+    expect {
+      blackjack_score(['Queen', 'Jack', 'King', 3, 4, 5])
+    }.must_raise ArgumentError
+
+    expect {
+      blackjack_score([8, 6, 9, 10, 2, 5, 7])
+    }.must_raise ArgumentError
+
+    expect {
+      blackjack_score(['King', 3, 'Jack', 'Queen', 2, 4])
+    }.must_raise ArgumentError
+
+    expect {
+      blackjack_score(['King'])
+    }.must_raise ArgumentError
+
+    expect {
+      blackjack_score([])
     }.must_raise ArgumentError
   end
 end
