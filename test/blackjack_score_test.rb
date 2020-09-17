@@ -33,18 +33,18 @@ describe 'Blackjack Score' do
 
   it 'calculates aces as 11 where it does not go over 21' do
     # Arrange
-    hand = [2, 'Ace', 6]
+    hand = ['Ace', 'Jack']
 
     # Act
     score = blackjack_score(hand)
 
     # Assert
-    expect(score).must_equal 19
+    expect(score).must_equal 21
   end
 
   it 'calculates aces as 1, if an 11 would cause the score to go over 21' do
     # Arrange
-    hand = [2, 'Ace', 6, 3]
+    hand = ['Ace', 'Ace', 'King']
 
     # Act
     score = blackjack_score(hand)

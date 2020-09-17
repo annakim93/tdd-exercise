@@ -15,7 +15,7 @@ def blackjack_score(hand)
     case
     when card == 'Ace'
       score += 1
-    when ['Jack', 'Queen', 'King'].include?(card)
+    when %w(Jack Queen King).include?(card)
       score += 10
     else
       score += card
@@ -29,3 +29,5 @@ def blackjack_score(hand)
   return score
 
 end
+
+p blackjack_score(['Ace', 'Ace'])
